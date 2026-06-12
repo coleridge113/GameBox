@@ -21,9 +21,9 @@ int generateRandomNumber(int upperBound) {
 
 int main() {
     TerminalState ts;
-    GameState gs = GameState(5, 10);
-    Player p = Player(1, 1, '@');
-    Player f = Player(generateRandomNumber(gs.getBound()), gs.getBound(), 'X');
+    GameState gs{5, 10};
+    Player p{1, 1, '@'};
+    Player f{generateRandomNumber(gs.getBound()), gs.getBound(), 'X'};
 
     while (!gs.checkWin()) {
         std::cout << "\033[2J\033[1;1H";
