@@ -16,7 +16,7 @@ class GameState {
         int getScore() { return score; }
         void incrementScore() { ++score; }
         bool checkWin() { return score == targetScore; }
-        void updateState(Player& player);
+        void updateState(Player& player, Player& food);
 };
 
 #endif
