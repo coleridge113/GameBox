@@ -4,6 +4,7 @@
 #include <iostream>
 #include <termios.h>
 #include <unistd.h>
+#include <random>
 
 char getch() {
     char buf = 0;
@@ -11,14 +12,22 @@ char getch() {
     return buf;
 }
 
+int generateRandomNumber(int upperBound) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distr(1, upperBound);
+    return distr(gen);
+}
+
 int main() {
     TerminalState ts;
-    Player p = Player(1, 1, '@');
     GameState gs = GameState(5, 10);
+    Player p = Player(1, 1, '@');
+    Player f = Player(generateRandomNumber(gs.getBound()), gs.getBound(), 'X');
 
     while (!gs.checkWin()) {
         std::cout << "\033[2J\033[1;1H";
-        gs.updateState(p);
+        gs.updateState(p, f);
 
         char input = getch();
         if (input == 'w' && p.getY() > 0) {  
