@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++23
 
-SOURCES = main.cpp classes/*.cpp
+SOURCES = main.cpp classes/*.cpp utils/*.cpp
 
 game: $(SOURCES)
 	$(CXX) $(CXXFLAGS) $(SOURCES) -o main

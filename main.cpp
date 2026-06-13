@@ -1,27 +1,15 @@
 #include "classes/Player.h"
 #include "classes/TerminalState.h"
 #include "classes/GameState.h"
+#include "utils/Utils.h"
 #include <iostream>
+#include <ostream>
 #include <termios.h>
 #include <unistd.h>
-#include <random>
-
-char getch() {
-    char buf = 0;
-    read(0, &buf, 1);
-    return buf;
-}
-
-int generateRandomNumber(int upperBound) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distr(1, upperBound);
-    return distr(gen);
-}
 
 int main() {
     TerminalState ts;
-    GameState gs{5, 10};
+    GameState gs{10, 10};
     Player p{1, 1, '@'};
     Player f{generateRandomNumber(gs.boundXY), gs.boundXY, 'X'};
 
@@ -43,5 +31,7 @@ int main() {
             p.move(1, 0); 
         }
     }
+
+    std::cout << "You won!" << std::endl;
     return 0;
 }
