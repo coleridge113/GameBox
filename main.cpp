@@ -10,7 +10,7 @@
 int main() {
     TerminalState ts;
     GameState gs{10, 10};
-    Player p{1, 1, '@'};
+    Player p{1, 2, '@'};
     Player f{generateRandomNumber(gs.boundXY), gs.boundXY, 'X'};
 
     while (!gs.checkWin()) {
@@ -18,16 +18,16 @@ int main() {
         gs.updateState(p, f);
 
         char input = getch();
-        if (input == 'w' && p.y > 0) {  
+        if (input == 'w' && p.getHead().y > 0) {  
             p.move(0, -1); 
         }
-        if (input == 's' && p.y < gs.boundXY) { 
+        if (input == 's' && p.getHead().y < gs.boundXY) { 
             p.move(0, 1); 
         }
-        if (input == 'a' && p.x > 0) { 
+        if (input == 'a' && p.getHead().x > 0) { 
             p.move(-1, 0); 
         }
-        if (input == 'd' && p.x < gs.boundXY) { 
+        if (input == 'd' && p.getHead().x < gs.boundXY) { 
             p.move(1, 0); 
         }
     }
