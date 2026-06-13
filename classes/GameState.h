@@ -22,17 +22,18 @@ struct GameState {
     bool checkWin() { return score == targetScore; }
 
     void updateState(Player& player, Player& food){
-        checkCollision(player, food);
+        if (checkCollision(player, food)) {
+            incrementScore();
+            regenerateFood(food);
+            player.grow = true;
+        }
         printScore(score);
         printGrid(player, food);
     }
 
-    void checkCollision(Player& player, Player& food) {
-        if (player.getHead().x == food.getHead().x && player.getHead().y == food.getHead().y) {
-            incrementScore();
-            // player.grow();
-            regenerateFood(food);
-        }
+    bool checkCollision(Player& player, Player& food) {
+        return player.getHead().x == food.getHead().x 
+            && player.getHead().y == food.getHead().y;
     }
 
     void printScore(int& score) {
