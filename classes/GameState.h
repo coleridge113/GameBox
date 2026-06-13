@@ -5,6 +5,7 @@
 #include "Player.h"
 #include <iostream>
 #include <ostream>
+#include <vector>
 
 struct GameState {
     GameState(int grid, int targetScore)
@@ -27,8 +28,9 @@ struct GameState {
     }
 
     void checkCollision(Player& player, Player& food) {
-        if (player.x == food.x && player.y == food.y) {
+        if (player.getHead().x == food.getHead().x && player.getHead().y == food.getHead().y) {
             incrementScore();
+            // player.grow();
             regenerateFood(food);
         }
     }
@@ -37,16 +39,21 @@ struct GameState {
         std::cout << "Score: " << score << std::endl;
     }
 
+
     void printGrid(Player& player, Player& food) {
+        std::vector<std::vector<char>> gridMap(grid, std::vector<char>(grid, '.'));
+
+        for (const auto& point : player.body) {
+            if (point.x >= 0 && point.x < grid && point.y >= 0 && point.y < grid) {
+                gridMap[point.y][point.x] = '@';
+            }
+        }
+
+        gridMap[food.getHead().y][food.getHead().x] = food.symbol;
+
         for (int i = 0; i < grid; ++i) {
             for (int j = 0; j < grid; ++j) {
-                if (i == player.y && j == player.x) {
-                    std::cout << player.symbol << " ";
-                } else if (i == food.y && j == food.x) {
-                    std::cout << food.symbol << " ";
-                } else {
-                    std::cout << ". ";
-                }
+                std::cout << gridMap[i][j] << " ";
             }
             std::cout << "\n";
         }
@@ -56,8 +63,8 @@ struct GameState {
         int nx = generateRandomNumber(boundXY);
         int ny = generateRandomNumber(boundXY);
 
-        food.x = nx;
-        food.y = ny;
+        food.getHead().x = nx;
+        food.getHead().y = ny;
     }
 };
 
