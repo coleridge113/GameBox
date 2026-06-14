@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 char getch();
-char getch_nb(char c);
+char getch_nb();
 int generateRandomNumber(int upperBound);
 void sleep(int t);
 

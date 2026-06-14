@@ -9,7 +9,7 @@ char getch() {
     return buf;
 }
 
-char getch_nb(char c) {
+char getch_nb() {
     char buf = 0;
     int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
     fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
@@ -17,7 +17,7 @@ char getch_nb(char c) {
     if (read(STDIN_FILENO, &buf, 1) > 0) {
         return buf;
     }
-    return c;
+    return 0;
 }
 
 int generateRandomNumber(int upperBound) {
