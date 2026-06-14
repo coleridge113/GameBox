@@ -7,6 +7,8 @@
 #include <ostream>
 #include <vector>
 
+using namespace std;
+
 struct GameState {
     GameState(int grid, int targetScore)
         : grid(grid), targetScore(targetScore){
@@ -37,12 +39,12 @@ struct GameState {
     }
 
     void printScore(int& score) {
-        std::cout << "Score: " << score << std::endl;
+        cout << "Score: " << score << endl;
     }
 
 
     void printGrid(Player& player, Player& food) {
-        std::vector<std::vector<char>> gridMap(grid, std::vector<char>(grid, '.'));
+        vector<vector<char>> gridMap(grid, vector<char>(grid, '.'));
 
         for (const auto& point : player.body) {
             if (point.x >= 0 && point.x < grid && point.y >= 0 && point.y < grid) {
@@ -54,9 +56,9 @@ struct GameState {
 
         for (int i = 0; i < grid; ++i) {
             for (int j = 0; j < grid; ++j) {
-                std::cout << gridMap[i][j] << " ";
+                cout << gridMap[i][j] << " ";
             }
-            std::cout << "\n";
+            cout << "\n";
         }
     }
 

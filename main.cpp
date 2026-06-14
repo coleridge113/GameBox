@@ -7,6 +7,8 @@
 #include <termios.h>
 #include <unistd.h>
 
+using namespace std;
+
 int main() {
     TerminalState ts;
     GameState gs{10, 10};
@@ -14,7 +16,7 @@ int main() {
     Player f{generateRandomNumber(gs.boundXY), gs.boundXY, 'X'};
 
     while (!gs.checkWin()) {
-        std::cout << "\033[2J\033[1;1H";
+        cout << "\033[2J\033[1;1H";
         gs.updateState(p, f);
 
         char input = getch();
@@ -32,6 +34,6 @@ int main() {
         }
     }
 
-    std::cout << "You won!" << std::endl;
+    cout << "You won!" << endl;
     return 0;
 }

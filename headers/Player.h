@@ -3,14 +3,23 @@
 
 #include <list>
 #include "Point.h"
+#include <map>
+
+using namespace std;
 
 struct Player {
     Player(int x, int y, char s)
-        : symbol(s){
+        : symbol(s) {
             body.emplace_back(x,y);
         }
 
-    std::list<Point> body;
+    list<Point> body;
+    map<char, char> opposite{
+        {'w', 's'},
+        {'s', 'w'},
+        {'a', 'd'},
+        {'d', 'a'}
+    };
     char symbol;
     bool grow = false;
 
