@@ -7,19 +7,12 @@
 #include <ostream>
 #include <vector>
 
-using namespace std;
-
 struct GameState {
-    GameState(int grid, int targetScore)
-        : grid(grid), targetScore(targetScore){
-            boundXY = grid - 1;
-            score = 0;
-        };
-
     int grid;
-    int boundXY;
-    int score;
     int targetScore;
+    int boundXY = grid - 1;
+    int score = 0;
+
     void incrementScore() { ++score; }
     bool checkWin() { return score == targetScore; }
 
@@ -39,12 +32,12 @@ struct GameState {
     }
 
     void printScore(int& score) {
-        cout << "Score: " << score << endl;
+        std::cout << "Score: " << score << std::endl;
     }
 
 
     void printGrid(Player& player, Player& food) {
-        vector<vector<char>> gridMap(grid, vector<char>(grid, '.'));
+        std::vector<std::vector<char>> gridMap(grid, std::vector<char>(grid, '.'));
 
         for (const auto& point : player.body) {
             if (point.x >= 0 && point.x < grid && point.y >= 0 && point.y < grid) {
@@ -56,9 +49,9 @@ struct GameState {
 
         for (int i = 0; i < grid; ++i) {
             for (int j = 0; j < grid; ++j) {
-                cout << gridMap[i][j] << " ";
+                std::cout << gridMap[i][j] << " ";
             }
-            cout << "\n";
+            std::cout << "\n";
         }
     }
 

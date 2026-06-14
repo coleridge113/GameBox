@@ -5,22 +5,15 @@
 #include "Point.h"
 #include <map>
 
-using namespace std;
-
 struct Player {
-    Player(int x, int y, char s)
-        : symbol(s) {
-            body.emplace_back(x,y);
-        }
-
-    list<Point> body;
-    map<char, char> opposite{
+    std::list<Point> body;
+    char symbol;
+    std::map<char, char> opposite{
         {'w', 's'},
         {'s', 'w'},
         {'a', 'd'},
         {'d', 'a'}
     };
-    char symbol;
     bool grow = false;
 
     void move(int dx, int dy) {
