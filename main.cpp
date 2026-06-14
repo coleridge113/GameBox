@@ -1,6 +1,6 @@
-#include "classes/Player.h"
-#include "classes/TerminalState.h"
-#include "classes/GameState.h"
+#include "headers/Player.h"
+#include "headers/TerminalState.h"
+#include "headers/GameState.h"
 #include "utils/Utils.h"
 #include <iostream>
 #include <ostream>
